@@ -1,15 +1,5 @@
 import { useEffect, useState } from "react";
-import {
-  // Card,
-  // CardControl,
-  // CardControls,
-  // CardHeader,
-  // CardTitle,
-  // CardTitleForm,
-  // CardTitleInput,
-  // IconButton,
-  Lane,
-} from "./TaskList.styled";
+import { Lane } from "./TaskList.styled";
 import { nanoid } from "nanoid";
 import Task from "../Task/Task";
 import TaskAdd from "../TaskAdd/TaskAdd";
@@ -54,40 +44,6 @@ function TaskList() {
         />
       ))}
       <TaskAdd addTask={addTask} />
-      {/* <Card>
-        <CardHeader>
-          <CardTitle>This is a task</CardTitle>
-        </CardHeader>
-        <CardControls>
-          <li>
-            <CardControl>Edit</CardControl>
-          </li>
-          <li>
-            <CardControl>Delete</CardControl>
-          </li>
-        </CardControls>
-      </Card>
-      <Card>
-        <CardHeader>
-          <CardTitle>This is another task</CardTitle>
-        </CardHeader>
-        <CardControls>
-          <li>
-            <CardControl>Edit</CardControl>
-          </li>
-          <li>
-            <CardControl>Delete</CardControl>
-          </li>
-        </CardControls>
-      </Card>
-      <Card>
-        <CardTitleForm>
-          <CardTitleInput as="input" placeholder="Add new task" name="title" />
-          <IconButton>
-            <img src="icons/plus.svg" alt="Add task" />
-          </IconButton>
-        </CardTitleForm>
-      </Card> */}
     </Lane>
   );
 }

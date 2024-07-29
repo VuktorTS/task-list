@@ -15,7 +15,7 @@ function Task({ task, editTask, deleteTask }) {
       />
 
       <CardControls>
-        {isEditable && (
+        {!isEditable && (
           <li>
             <CardControlButton onClick={() => setIsEditable(true)}>
               Edit

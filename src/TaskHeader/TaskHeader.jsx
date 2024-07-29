@@ -6,13 +6,14 @@ import {
   IconButton,
 } from "./TaskHeader.styled";
 
-function TaskHeader({ task, isEditable, setEditable, editTask }) {
+function TaskHeader({ task, isEditable, setIsEditable, editTask }) {
   const { title } = task;
 
   const handleEditTask = (evt) => {
     evt.preventDefault();
     editTask(task.id, evt.target.title.value);
-    setEditable(false);
+    console.log("edit true");
+    setIsEditable(false);
   };
 
   if (isEditable) {
@@ -30,7 +31,7 @@ function TaskHeader({ task, isEditable, setEditable, editTask }) {
 
   return (
     <CardHeader>
-      <CardTitle>This is a task</CardTitle>
+      <CardTitle>{title}</CardTitle>
     </CardHeader>
   );
 }

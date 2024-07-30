@@ -1,4 +1,4 @@
-import Button from "../Button/Button";
+import Button from "../../Button/Button";
 import { Card } from "../Task/Task.styled";
 import { CardTitleForm, CardTitleInput } from "../TaskHeader/TaskHeader.styled";
 

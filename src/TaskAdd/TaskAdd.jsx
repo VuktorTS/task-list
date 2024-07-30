@@ -1,14 +1,11 @@
+import Button from "../Button/Button";
 import { Card } from "../Task/Task.styled";
-import {
-  CardTitleForm,
-  CardTitleInput,
-  IconButton,
-} from "../TaskHeader/TaskHeader.styled";
+import { CardTitleForm, CardTitleInput } from "../TaskHeader/TaskHeader.styled";
 
 function TaskAdd({ addTask }) {
   const handleAddTask = (evt) => {
     evt.preventDefault();
-
+    if (evt.target.title.value === "") return;
     addTask(evt.target.title.value);
     evt.target.reset();
   };
@@ -17,9 +14,9 @@ function TaskAdd({ addTask }) {
     <Card>
       <CardTitleForm onSubmit={handleAddTask}>
         <CardTitleInput as="input" placeholder="Add new task" name="title" />
-        <IconButton>
+        <Button icon="plus" label="Add task">
           <img src="icons/plus.svg" alt="Add task" />
-        </IconButton>
+        </Button>
       </CardTitleForm>
     </Card>
   );

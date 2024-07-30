@@ -1,6 +1,6 @@
 import "./App.styled.js";
 import { Main } from "./App.styled.js";
-import TaskList from "./TaskList/TaskList";
+import { TaskList } from "./task";
 
 function App() {
   return (

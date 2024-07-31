@@ -1,33 +1,29 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
+import useTask from "../hooks/useTask";
 import TaskHeader from "../TaskHeader/TaskHeader";
-import { Card, CardControlButton, CardControls } from "./Task.styled";
+import { Card } from "./Task.styled";
 
-function Task({ task, editTask, deleteTask }) {
-  const [isEditable, setIsEditable] = useState(false);
+function Task({ id }) {
+  const {
+    state: { expandedId },
+  } = useTask();
+  const isExpanded = expandedId === id;
+
+  const [isEditable, setEditable] = useState(false);
+
+  const cardId = useMemo(() => `card-${Math.random()}`, []);
+  const titleId = useMemo(() => `title-${Math.random()}`, []);
 
   return (
     <Card>
       <TaskHeader
-        task={task}
+        id={id}
         isEditable={isEditable}
-        setIsEditable={setIsEditable}
-        editTask={editTask}
+        setEditable={setEditable}
+        cardId={cardId}
+        titleId={titleId}
       />
-
-      <CardControls>
-        {!isEditable && (
-          <li>
-            <CardControlButton onClick={() => setIsEditable(true)}>
-              Edit
-            </CardControlButton>
-          </li>
-        )}
-        <li>
-          <CardControlButton onClick={() => deleteTask(task.id)}>
-            Delete
-          </CardControlButton>
-        </li>
-      </CardControls>
+      {isExpanded && <p>hello</p>}
     </Card>
   );
 }

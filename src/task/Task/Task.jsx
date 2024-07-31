@@ -2,6 +2,7 @@ import { useMemo, useState } from "react";
 import useTask from "../hooks/useTask";
 import TaskHeader from "../TaskHeader/TaskHeader";
 import { Card } from "./Task.styled";
+import TaskControls from "../TaskControls/TaskControls";
 
 function Task({ id }) {
   const {
@@ -23,7 +24,13 @@ function Task({ id }) {
         cardId={cardId}
         titleId={titleId}
       />
-      {isExpanded && <p>hello</p>}
+      {isExpanded && (
+        <TaskControls
+          id={id}
+          isEditable={isEditable}
+          setEditable={setEditable}
+        />
+      )}
     </Card>
   );
 }

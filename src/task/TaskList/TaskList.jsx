@@ -9,7 +9,6 @@ function TaskList() {
   } = useTask();
 
   const taskIds = tasks.map(({ id }) => id);
-  console.log("🚀 ~ TaskList ~ taskIds:", taskIds);
 
   return (
     <Lane>

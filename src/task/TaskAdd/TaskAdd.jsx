@@ -6,7 +6,7 @@ import { CardHeaderNew } from "./TaskAdd.styled";
 
 function TaskAdd() {
   const {
-    action: { addTask },
+    actions: { addTask },
   } = useTask();
 
   const handleAddTask = (evt) => {

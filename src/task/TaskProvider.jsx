@@ -36,7 +36,7 @@ function TaskProvider({ children }) {
       expandedId,
       tasks,
     },
-    action: {
+    actions: {
       toggleExpand,
       addTask,
       editTask,

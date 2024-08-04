@@ -9,10 +9,10 @@ import {
   IconButton,
 } from "./TaskHeader.styled";
 
-function TaskHeader({ id, isEditable, setIsEditable, titleId, cardId }) {
+function TaskHeader({ id, isEditable, setEditable, titleId, cardId }) {
   const {
     state: { tasks, expandedId },
-    action: { toggleExpand, editTask },
+    actions: { toggleExpand, editTask },
   } = useTask();
 
   const task = tasks.find((task) => task.id === id);
@@ -23,8 +23,7 @@ function TaskHeader({ id, isEditable, setIsEditable, titleId, cardId }) {
   const handleEditTask = (evt) => {
     evt.preventDefault();
     editTask(task.id, evt.target.title.value);
-    console.log("edit true");
-    setIsEditable(false);
+    setEditable(false);
   };
 
   if (isEditable) {

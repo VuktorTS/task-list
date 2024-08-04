@@ -9,11 +9,12 @@ function TaskList() {
   } = useTask();
 
   const taskIds = tasks.map(({ id }) => id);
+  console.log("🚀 ~ TaskList ~ taskIds:", taskIds);
 
   return (
     <Lane>
-      {taskIds.map((task) => (
-        <Task key={task.id} id={task.id} />
+      {taskIds.map((taskId) => (
+        <Task key={taskId} id={taskId} />
       ))}
       <TaskAdd />
     </Lane>

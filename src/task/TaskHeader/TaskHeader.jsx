@@ -1,4 +1,7 @@
+import clsx from "clsx";
+import useTask from "../hooks/useTask";
 import {
+  CardExpand,
   CardHeader,
   CardTitle,
   CardTitleForm,
@@ -6,7 +9,15 @@ import {
   IconButton,
 } from "./TaskHeader.styled";
 
-function TaskHeader({ task, isEditable, setIsEditable, editTask }) {
+function TaskHeader({ id, isEditable, setIsEditable, titleId, cardId }) {
+  const {
+    state: { tasks, expandedId },
+    action: { toggleExpand, editTask },
+  } = useTask();
+
+  const task = tasks.find((task) => task.id === id);
+  const isExpanded = expandedId === id;
+
   const { title } = task;
 
   const handleEditTask = (evt) => {
@@ -19,8 +30,16 @@ function TaskHeader({ task, isEditable, setIsEditable, editTask }) {
   if (isEditable) {
     return (
       <CardHeader>
+        <CardExpand as="span" className={clsx(isExpanded && "card-expanded")}>
+          <img src="icons/caret.svg" alt="Edit" />
+        </CardExpand>
         <CardTitleForm onSubmit={handleEditTask}>
-          <CardTitleInput as="input" defaultValue={title} name="title" />
+          <CardTitleInput
+            as="input"
+            id={titleId}
+            defaultValue={title}
+            name="title"
+          />
           <IconButton>
             <img src="icons/check.svg" alt="Edit task" />
           </IconButton>
@@ -30,8 +49,17 @@ function TaskHeader({ task, isEditable, setIsEditable, editTask }) {
   }
 
   return (
-    <CardHeader>
-      <CardTitle>{title}</CardTitle>
+    <CardHeader
+      as="button"
+      onClick={() => toggleExpand(id)}
+      aria-expanded={isExpanded}
+      aria-labelledby={titleId}
+      aria-controls={cardId}
+    >
+      <CardExpand as="span" className={clsx(isExpanded && "card-expanded")}>
+        <img src="icons/caret.svg" alt="Collapse/Expand" />
+      </CardExpand>
+      <CardTitle id={titleId}>{title}</CardTitle>
     </CardHeader>
   );
 }

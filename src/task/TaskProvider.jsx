@@ -21,6 +21,8 @@ function TaskProvider({ children }) {
     localStorage.setItem("task-manager-items-steps", JSON.stringify(tasks));
   }, [tasks]);
 
+  // ------------ tasks-----------------
+
   const addTask = (title) =>
     setTasks((ts) => ts.concat([{ id: nanoid(), title, step: [] }]));
 
@@ -30,6 +32,50 @@ function TaskProvider({ children }) {
     );
   const deleteTask = (id) =>
     setTasks((ts) => ts.filter((task) => task.id !== id));
+
+  // ------------ steps -----------------
+
+  const editStep = (id, step, data) =>
+    setTasks((ts) =>
+      ts.map((task) =>
+        task.id === id
+          ? {
+              ...task,
+              steps: [
+                ...task.steps.slice(0, step),
+                { ...task.steps[step], ...data },
+                ...task.steps.slice(step + 1),
+              ],
+            }
+          : task,
+      ),
+    );
+  const deleteStep = (id, step) =>
+    setTasks((ts) =>
+      ts.map((task) =>
+        task.id === id
+          ? {
+              ...task,
+              steps: [
+                ...task.steps.slice(0, step),
+                ...task.steps.lsice(step + 1),
+              ],
+            }
+          : task,
+      ),
+    );
+
+  const addStep = (id, step) =>
+    setTasks((ts) =>
+      ts.map((task) =>
+        task.id === id
+          ? {
+              ...task,
+              steps: task.steps.concat([{ step, completed: false }]),
+            }
+          : task,
+      ),
+    );
 
   const value = {
     state: {
@@ -41,6 +87,9 @@ function TaskProvider({ children }) {
       addTask,
       editTask,
       deleteTask,
+      addStep,
+      editStep,
+      deleteStep,
     },
   };
   return <TaskContext.Provider value={value}>{children}</TaskContext.Provider>;

@@ -11,11 +11,6 @@ export const IconButton = styled.button`
     width: 16px;
   }
   & .step-button {
-    background-color: transparent;
-    border: 0;
-    padding: 0;
-    color: black;
-    display: flex;
-    cursor: pointer;
+    opacity: 0;
   }
 `;

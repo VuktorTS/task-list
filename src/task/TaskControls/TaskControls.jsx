@@ -1,15 +1,15 @@
-import useTask from '../hooks/useTask';
-import { CardControlButton, CardControls } from './TaskControls.styled';
+import useTask from "../hooks/useTask";
+import { CardControlButton, CardControls } from "./TaskControls.styled";
 
-function TaskControls({id, isEditable, setIsEditable}) {
-  const{
-    actions: {deleteTask},
+function TaskControls({ id, isEditable, setEditable }) {
+  const {
+    actions: { deleteTask },
   } = useTask();
   return (
     <CardControls>
       {!isEditable && (
         <li>
-          <CardControlButton onClick={() => setIsEditable(true)}>
+          <CardControlButton onClick={() => setEditable(true)}>
             Edit
           </CardControlButton>
         </li>

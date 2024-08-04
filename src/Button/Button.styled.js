@@ -10,4 +10,7 @@ export const IconButton = styled.button`
   & img {
     width: 16px;
   }
+  & .step-button {
+    opacity: 0;
+  }
 `;

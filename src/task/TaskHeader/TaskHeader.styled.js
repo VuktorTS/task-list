@@ -44,6 +44,14 @@ export const IconButton = styled.button`
     width: 16px;
   }
 `;
+
+export const CardPercentage = styled.p`
+  font-weight: bold;
+  color: #09c;
+  margin: 0;
+  line-height: 24px;
+`;
+
 export const CardExpand = styled(IconButton)`
   transform: rotate(-0.25turn);
 

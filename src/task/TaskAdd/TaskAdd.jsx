@@ -11,8 +11,9 @@ function TaskAdd() {
 
   const handleAddTask = (evt) => {
     evt.preventDefault();
-    if (evt.target.title.value === "") return;
-    addTask(evt.target.title.value);
+    const value = evt.target.title.value;
+    if (value === "") return;
+    addTask(value);
     evt.target.reset();
   };
 

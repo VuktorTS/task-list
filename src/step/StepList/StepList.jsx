@@ -15,10 +15,10 @@ function StepList({ taskId }) {
   return (
     <Progress>
       <ProgressSteps>
-        {steps.map((step) => (
-          <Step key={step}></Step>
+        {steps.map((step, index) => (
+          <Step key={step} taskId={taskId} index={index}></Step>
         ))}
-        <StepAdd />
+        <StepAdd taskId={taskId} />
       </ProgressSteps>
     </Progress>
   );

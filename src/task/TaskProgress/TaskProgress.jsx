@@ -1,7 +1,7 @@
 import useTask from "../hooks/useTask";
 import { ProgressBar } from "./TaskProgress.styled";
 
-function TaskProgress() {
+function TaskProgress({ id }) {
   const {
     state: { tasks },
   } = useTask();

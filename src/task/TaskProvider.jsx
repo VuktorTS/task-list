@@ -1,10 +1,7 @@
 import { nanoid } from "nanoid";
 import { useEffect, useState } from "react";
 import TaskContext from "./context";
-
-const initialState = [
-  { id: 1, title: "1", step: [{ step: "1", completed: true }] },
-];
+import initialState from "./fixture";
 
 const getInitialState = () =>
   JSON.parse(localStorage.getItem("task-manager-items-steps")) || initialState;
@@ -24,7 +21,7 @@ function TaskProvider({ children }) {
   // ------------ tasks-----------------
 
   const addTask = (title) =>
-    setTasks((ts) => ts.concat([{ id: nanoid(), title, step: [] }]));
+    setTasks((ts) => ts.concat([{ id: nanoid(), title, steps: [] }]));
 
   const editTask = (id, title) =>
     setTasks((ts) =>
@@ -58,7 +55,7 @@ function TaskProvider({ children }) {
               ...task,
               steps: [
                 ...task.steps.slice(0, step),
-                ...task.steps.lsice(step + 1),
+                ...task.steps.slice(step + 1),
               ],
             }
           : task,

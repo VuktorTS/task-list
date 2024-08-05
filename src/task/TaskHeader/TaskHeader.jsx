@@ -3,6 +3,7 @@ import useTask from "../hooks/useTask";
 import {
   CardExpand,
   CardHeader,
+  CardPercentage,
   CardTitle,
   CardTitleForm,
   CardTitleInput,
@@ -18,7 +19,11 @@ function TaskHeader({ id, isEditable, setEditable, titleId, cardId }) {
   const task = tasks.find((task) => task.id === id);
   const isExpanded = expandedId === id;
 
-  const { title } = task;
+  const { title, steps } = task;
+
+  const stepsTotal = steps.length;
+  const stepsCompleted = steps.filter(({ completed }) => completed).length;
+  const stepsCompletion = Math.round((100 * stepsCompleted) / stepsTotal);
 
   const handleEditTask = (evt) => {
     evt.preventDefault();
@@ -43,6 +48,9 @@ function TaskHeader({ id, isEditable, setEditable, titleId, cardId }) {
             <img src="icons/check.svg" alt="Edit task" />
           </IconButton>
         </CardTitleForm>
+        <CardPercentage>
+          {!isNaN(stepsCompletion) && `${stepsCompletion}%`}
+        </CardPercentage>
       </CardHeader>
     );
   }
@@ -59,6 +67,9 @@ function TaskHeader({ id, isEditable, setEditable, titleId, cardId }) {
         <img src="icons/caret.svg" alt="Collapse/Expand" />
       </CardExpand>
       <CardTitle id={titleId}>{title}</CardTitle>
+      <CardPercentage>
+        {!isNaN(stepsCompletion) && `${stepsCompletion}%`}
+      </CardPercentage>
     </CardHeader>
   );
 }

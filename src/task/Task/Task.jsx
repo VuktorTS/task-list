@@ -3,6 +3,8 @@ import useTask from "../hooks/useTask";
 import TaskHeader from "../TaskHeader/TaskHeader";
 import { Card } from "./Task.styled";
 import TaskControls from "../TaskControls/TaskControls";
+import { StepList } from "../../step";
+import TaskProgress from "../TaskProgress/TaskProgress";
 
 function Task({ id }) {
   const {
@@ -16,7 +18,7 @@ function Task({ id }) {
   const titleId = useMemo(() => `title-${Math.random()}`, []);
 
   return (
-    <Card>
+    <Card id={cardId} aria-labelledby={titleId}>
       <TaskHeader
         id={id}
         isEditable={isEditable}
@@ -25,12 +27,16 @@ function Task({ id }) {
         titleId={titleId}
       />
       {isExpanded && (
-        <TaskControls
-          id={id}
-          isEditable={isEditable}
-          setEditable={setEditable}
-        />
+        <>
+          <TaskControls
+            id={id}
+            isEditable={isEditable}
+            setEditable={setEditable}
+          />
+          <StepList taskId={id} />
+        </>
       )}
+      <TaskProgress id={id} />
     </Card>
   );
 }

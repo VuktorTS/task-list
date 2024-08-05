@@ -4,13 +4,13 @@ import { StepLabel } from "./StepCheckbox.styled";
 function StepCheckbox({ taskId, index }) {
   const {
     state: { tasks },
-    actions: { editSteps },
+    actions: { editStep },
   } = useTask();
 
   const stepData = tasks.find((task) => task.id === taskId).steps[index];
 
   const handleCheck = () =>
-    editSteps(taskId, index, { completed: !stepData.completed });
+    editStep(taskId, index, { completed: !stepData.completed });
 
   return (
     <StepLabel>
